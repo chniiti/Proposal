@@ -1,12 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { NgIf } from '@angular/common';
+
 
 type BtnVariant = 'primary' | 'ghost' | 'outline';
 
 @Component({
   selector: 'ui-button',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgIf],
   template: `
     <a *ngIf="href" class="btn" [class]="variant" [href]="href" [attr.target]="target" [attr.rel]="rel" [attr.download]="download">
       <ng-content />

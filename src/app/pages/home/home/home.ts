@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { RevealDirective } from '../../../shared/reveal.directive';
 import { UiButtonComponent } from '../../../shared/ui/button/button';
 import { UiContainerComponent } from '../../../shared/ui/container/container';
+import { NgFor } from '@angular/common';
+
 
 
 type Experience = {
@@ -14,7 +16,7 @@ type Experience = {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [UiContainerComponent, UiButtonComponent, RevealDirective],
+  imports: [UiContainerComponent, UiButtonComponent, RevealDirective, NgFor],
   templateUrl: './home.html',
   styleUrl: './home.scss'
 })
