@@ -10,12 +10,12 @@ import { UiContainerComponent } from '../../shared/ui/container/container';
   styleUrl: './header.scss'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  proposalPdf = '/assets/Bilel-Chniti-Executive-Proposal.pdf';
+  proposalPdf = '/assets/Bilel-Chniti-Proposal.pdf';
   cvPdf = '/assets/Bilel-Chniti-CV.pdf';
   profileImage = '/assets/profile-photo.jpg';
   mail = 'mailto:bilel.chniti@esprit.tn?subject=Opportunity%20in%20Qatar%20-%20Digital%20Transformation';
   linkedin = 'https://www.linkedin.com/in/bilel-ch/';
-  
+
   isScrolled = false;
 
   constructor(private el: ElementRef, private renderer: Renderer2) {}
@@ -36,7 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private checkScroll(): void {
     const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || 0;
     const headerElement = this.el.nativeElement.querySelector('.header');
-    
+
     if (scrollPosition > 50) {
       if (!this.isScrolled) {
         this.isScrolled = true;
