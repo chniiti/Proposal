@@ -1,0 +1,23 @@
+<footer class="footer">
+    <ui-container>
+        <div class="wrap card">
+            <div class="left">
+                <div class="profileSection">
+                    <div class="profilePhoto">
+                        <img [src]="profileImage" alt="Bilel Chniti" (error)="$event.target.src='/assets/profile-photo.jpg'" />
+                        <div class="photoFrame"></div>
+                        <div class="photoGlow"></div>
+                    </div>
+                    <div class="profileInfo">
+                        <div class="brand">Bilel Chniti</div>
+                        <div class="role">Software Architecture Engineer</div>
+                        <div class="location small">Open to Qatar</div>
+                    </div>
+                </div>
+            </div>
+            <div class="right small">
+                © {{year}} • Executive digital proposal
+            </div>
+        </div>
+    </ui-container>
+</footer>

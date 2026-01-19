@@ -1,0 +1,512 @@
+.header {
+    position: sticky;
+    top: 14px;
+    z-index: 100;
+    transition: var(--transition);
+}
+
+.header.scrolled {
+    top: 8px;
+}
+
+.header.scrolled .bar {
+    backdrop-filter: blur(30px) saturate(180%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, .4);
+    border-color: rgba(255, 255, 255, .15);
+}
+
+.bar {
+    margin-top: 14px;
+    padding: 14px 24px;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    backdrop-filter: blur(30px) saturate(180%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .06));
+    border: 1px solid rgba(255, 255, 255, .15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .1);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(54, 211, 153, .4), rgba(255, 255, 255, .3), rgba(54, 211, 153, .4), transparent);
+}
+
+.bar::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(54, 211, 153, .08), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.bar:hover::after {
+    opacity: 1;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-width: 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.profilePhoto {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: visible;
+    flex-shrink: 0;
+    border: 3px solid rgba(255, 255, 255, .2);
+    background: linear-gradient(135deg, rgba(255, 255, 255, .1), rgba(255, 255, 255, .05));
+    transition: var(--transition);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .2), inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+
+.profilePhoto::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    padding: 2px;
+    background: linear-gradient(135deg, var(--brand), var(--brand2), var(--brand));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+    animation: rotate-gradient 3s linear infinite;
+    background-size: 200% 200%;
+}
+
+.profilePhoto:hover::before {
+    opacity: 0.8;
+}
+
+@keyframes rotate-gradient {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.profilePhoto img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center;
+    display: block !important;
+    border-radius: 50%;
+    position: relative;
+    z-index: 0;
+    opacity: 1 !important;
+    visibility: visible !important;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.photoGlow {
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(54, 211, 153, .4), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: -2;
+    filter: blur(8px);
+}
+
+.statusIndicator {
+    position: absolute;
+    bottom: 3px;
+    right: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--brand);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 2px rgba(54, 211, 153, .3);
+    z-index: 2;
+    animation: pulse-status 2s ease-in-out infinite;
+}
+
+@keyframes pulse-status {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 0 2px rgba(54, 211, 153, .3), 0 0 0 4px rgba(54, 211, 153, .1);
+    }
+    50% { 
+        transform: scale(1.1);
+        box-shadow: 0 0 0 2px rgba(54, 211, 153, .5), 0 0 0 6px rgba(54, 211, 153, .15);
+    }
+}
+
+.profilePhoto:hover {
+    transform: scale(1.08);
+    border-color: rgba(54, 211, 153, .5);
+    box-shadow: 0 8px 32px rgba(54, 211, 153, .3), inset 0 1px 0 rgba(255, 255, 255, .2);
+}
+
+.profilePhoto:hover .photoGlow {
+    opacity: 0.8;
+}
+
+.header.scrolled .bar {
+    padding: 10px 20px;
+    border-radius: var(--radius-lg);
+}
+
+.header.scrolled .profilePhoto {
+    width: 56px;
+    height: 56px;
+}
+
+.header.scrolled .statusIndicator {
+    width: 14px;
+    height: 14px;
+    bottom: 2px;
+    right: 2px;
+}
+
+.header.scrolled .title .name {
+    font-size: 1rem;
+}
+
+.header.scrolled .title .role {
+    font-size: .82rem;
+}
+
+.title .name {
+    font-weight: 800;
+    letter-spacing: -.03em;
+    line-height: 1.1;
+    font-size: 1.05rem;
+    background: linear-gradient(135deg, var(--text), rgba(255, 255, 255, .9));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.title .role {
+    font-size: .88rem;
+    color: var(--muted);
+    margin-top: 3px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.nav {
+    display: flex;
+    gap: 6px;
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .04));
+    backdrop-filter: blur(15px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+}
+
+.nav a {
+    font-size: .9rem;
+    color: var(--muted);
+    padding: 8px 14px;
+    border-radius: 10px;
+    transition: var(--transition-fast);
+    position: relative;
+    font-weight: 500;
+}
+
+.nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--brand), var(--brand2));
+    border-radius: 2px;
+    transition: transform 0.3s ease;
+}
+
+.nav a:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, .08);
+    transform: translateY(-1px);
+}
+
+.nav a:hover::before {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.right {
+    display: flex !important;
+    gap: 10px;
+    align-items: center;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.right .icon {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    flex-shrink: 0;
+}
+
+.headerBtn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0.85rem 1.2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, .20);
+    background: linear-gradient(135deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .05));
+    color: var(--text);
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+    transition: var(--transition);
+    white-space: nowrap;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .2);
+    position: relative;
+    overflow: hidden;
+}
+
+.headerBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .1), transparent);
+    transition: left 0.5s ease;
+}
+
+.headerBtn:hover::before {
+    left: 100%;
+}
+
+.headerBtn:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, .35);
+    background: linear-gradient(135deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .08));
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .3);
+    color: var(--text);
+    text-decoration: none;
+}
+
+.headerBtn:active {
+    transform: translateY(0);
+}
+
+.downloadBtn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.downloadBtn .icon {
+    transition: transform 0.3s ease;
+}
+
+.downloadBtn:hover .icon {
+    transform: translateY(2px);
+}
+
+.downloadBtn span {
+    display: inline-block;
+}
+
+.downloadBtn .icon {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.downloadBtn:hover .icon {
+    transform: translateY(2px);
+}
+
+.downloadBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .3);
+}
+
+.ctaBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    padding: 0.95rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.ctaBtn .icon {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.ctaBtn:hover .icon {
+    transform: translateX(2px) translateY(-2px);
+}
+
+.ctaBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(54, 211, 153, .35);
+}
+
+@media (max-width: 900px) {
+    .nav {
+        display: none;
+    }
+    .bar {
+        padding: 12px 18px;
+        gap: 16px;
+    }
+    
+    .profilePhoto {
+        width: 56px;
+        height: 56px;
+    }
+    
+    .statusIndicator {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .title .name {
+        font-size: 1rem;
+    }
+    
+    .title .role {
+        font-size: .8rem;
+    }
+    
+    .right {
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    
+    .headerBtn {
+        padding: .75rem 1rem;
+        font-size: .85rem;
+    }
+    
+    .headerBtn span {
+        display: none;
+    }
+    
+    .headerBtn .icon {
+        margin: 0;
+        width: 18px;
+        height: 18px;
+    }
+    
+    .ctaBtn {
+        padding: .75rem 1.2rem;
+        font-size: .85rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .bar {
+        padding: 10px 14px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    
+    .left {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .logo {
+        gap: 10px;
+    }
+    
+    .profilePhoto {
+        width: 50px;
+        height: 50px;
+        border-width: 2.5px;
+    }
+    
+    .statusIndicator {
+        width: 12px;
+        height: 12px;
+        border-width: 2.5px;
+    }
+    
+    .title .name {
+        font-size: .92rem;
+    }
+    
+    .title .role {
+        font-size: .75rem;
+    }
+    
+    .right {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: nowrap;
+    }
+    
+    .headerBtn {
+        flex: 1;
+        justify-content: center;
+        padding: .7rem .9rem;
+        font-size: .8rem;
+    }
+    
+    .headerBtn span {
+        display: inline-block;
+        font-size: .75rem;
+    }
+    
+    .headerBtn .icon {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .ctaBtn {
+        flex: 0 0 auto;
+        padding: .7rem 1rem;
+        font-size: .8rem;
+    }
+}

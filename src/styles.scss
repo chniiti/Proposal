@@ -1,1 +1,181 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+    --bg: #0a0f1a;
+    --surface: rgba(255, 255, 255, .08);
+    --surface-2: rgba(255, 255, 255, .12);
+    --surface-hover: rgba(255, 255, 255, .14);
+    --border: rgba(255, 255, 255, .12);
+    --border-hover: rgba(255, 255, 255, .20);
+    --text: rgba(255, 255, 255, .96);
+    --muted: rgba(255, 255, 255, .75);
+    --muted2: rgba(255, 255, 255, .60);
+    --brand: #36d399;
+    --brand2: #22c55e;
+    --brand-glow: rgba(54, 211, 153, .25);
+    --qatar-accent: rgba(138, 21, 56, .15);
+    /* Qatar maroon accent */
+    --danger: #fb7185;
+    --shadow: 0 20px 70px rgba(0, 0, 0, .50);
+    --shadow2: 0 12px 40px rgba(0, 0, 0, .40);
+    --shadow-brand: 0 20px 60px rgba(54, 211, 153, .20);
+    --radius-xl: 24px;
+    --radius-lg: 20px;
+    --radius-md: 16px;
+    --max: 1200px;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: 
+        radial-gradient(1200px 700px at 15% 10%, rgba(54, 211, 153, .18), transparent 60%),
+        radial-gradient(900px 500px at 85% 15%, rgba(34, 197, 94, .12), transparent 55%),
+        radial-gradient(1000px 600px at 50% 85%, rgba(138, 21, 56, .08), transparent 60%),
+        radial-gradient(800px 450px at 30% 50%, rgba(255, 255, 255, .06), transparent 65%),
+        var(--bg);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+::selection {
+    background: rgba(54, 211, 153, .25);
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 .6rem 0;
+    letter-spacing: -0.02em;
+}
+
+p {
+    margin: 0 0 1rem 0;
+    color: var(--muted);
+    line-height: 1.65;
+}
+
+.small {
+    font-size: .92rem;
+    color: var(--muted2);
+}
+
+.kbd {
+    font-size: .82rem;
+    padding: .2rem .5rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .04);
+    color: var(--muted);
+}
+
+.section {
+    padding: 100px 0;
+    position: relative;
+}
+
+.section:first-of-type {
+    padding-top: 120px;
+}
+
+.card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .10), rgba(255, 255, 255, .05));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow2);
+    backdrop-filter: blur(20px) saturate(180%);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .3), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow);
+    background: linear-gradient(180deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .06));
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.hr {
+    height: 1px;
+    width: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .14), transparent);
+}
+
+.grid {
+    display: grid;
+    gap: 16px;
+}
+
+@media (max-width: 900px) {
+    .section {
+        padding: 64px 0;
+    }
+}
+
+.reveal {
+    transform: translateY(30px);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal--show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.reveal--hidden {
+    transform: translateY(30px);
+    opacity: 0;
+}
+
+/* Stagger animation delays */
+.reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal:nth-child(2) { transition-delay: 100ms; }
+.reveal:nth-child(3) { transition-delay: 200ms; }
+.reveal:nth-child(4) { transition-delay: 300ms; }
+.reveal:nth-child(5) { transition-delay: 400ms; }
+.reveal:nth-child(6) { transition-delay: 500ms; }

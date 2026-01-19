@@ -1,4 +1,27 @@
-# BilelProposal
+# Bilel Proposal - Executive Digital Proposal
+
+Professional business proposal website for Software Architecture Engineer - Open to Qatar opportunities.
+
+## 🚀 Quick Start
+
+### Development
+```bash
+npm install
+npm start
+```
+Visit: http://localhost:4200
+
+### Production Build
+```bash
+npm run build
+```
+
+### Deployment
+See [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md) for detailed deployment instructions.
+
+**Recommended Platform**: Vercel (supports Angular SSR)
+
+---
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.4.
 
